@@ -1,3 +1,5 @@
+package ScrewUp;
+
 import java.util.Scanner;
 
 public class ProductScreen extends DBProduct {

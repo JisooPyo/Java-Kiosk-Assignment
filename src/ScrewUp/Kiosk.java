@@ -1,4 +1,4 @@
-import java.util.Scanner;
+package ScrewUp;
 
 public class Kiosk {
     MenuScreen menuScreen = new MenuScreen();

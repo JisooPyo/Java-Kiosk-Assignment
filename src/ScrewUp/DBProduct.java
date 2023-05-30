@@ -1,3 +1,5 @@
+package ScrewUp;
+
 public class DBProduct {
     String[][] burger;
     String[][] forzenCustard;

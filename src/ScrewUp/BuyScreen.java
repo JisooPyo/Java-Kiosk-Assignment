@@ -1,4 +1,9 @@
-import java.awt.*;
+package ScrewUp;
+
+import ScrewUp.CartScreen;
+import ScrewUp.MenuScreen;
+import ScrewUp.ProductScreen;
+
 import java.util.Scanner;
 
 public class BuyScreen extends ProductScreen {
