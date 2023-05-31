@@ -18,14 +18,22 @@ public class Kiosk {
         if ( first <= 4 ) {
             productScreen( first );
         } else if ( first == 5 ) {
-            if ( order.orderList == null ) {
-                System.out.println( "장바구니에 담은 상품이 없습니다. 다시 메뉴판으로 이동합니다." );
+            if ( order.orderList.size() == 0 ) {
+                System.out.println( "장바구니에 담은 상품이 없습니다. 다시 메뉴판으로 이동합니다.\n" );
                 menuScreen();
             } else {
                 orderScreen();
             }
+        } else if ( first == 6 ) {
+            if ( order.orderList.size() == 0 ) {
+                System.out.println( "취소할 주문이 없습니다. 메뉴판으로 이동합니다.\n" );
+                menuScreen();
+            } else {
+                cancleScreen();
+            }
         } else {
-            cancleScreen();
+            System.out.println("옵션을 잘못 선택하였습니다. 다시 골라주세요.");
+            menuScreen();
         }
     }
 
@@ -38,17 +46,18 @@ public class Kiosk {
             order.addOrder( first, second );
             menuScreen();
         } else {
-            product.showProduct( first );
+            productScreen( first );
         }
     }
 
     public void orderScreen() {
         order.showOrder();
         int confirmOrder = sc.nextInt();
-        if (confirmOrder==1){
-            System.out.println("주문이 완료되었습니다!\n");
-            System.out.println("대기번호는 [ 1 ] 번 입니다.");
-            System.out.println("(3초 후 메뉴판으로 돌아갑니다.");
+        if ( confirmOrder == 1 ) {
+
+            System.out.println( "주문이 완료되었습니다!\n" );
+            System.out.println( "대기번호는 [ 1 ] 번 입니다." );
+            System.out.println( "(3초 후 메뉴판으로 돌아갑니다.)\n" );
             try {
                 Thread.sleep( 3000 );
             } catch ( InterruptedException e ) {
@@ -67,11 +76,12 @@ public class Kiosk {
         int cancelpick = sc.nextInt();
         if ( cancelpick == 1 ) {
             order.orderList.clear();
+            System.out.println( "진행하던 주문이 취소되었습니다." );
+            menuScreen();
         } else {
             menuScreen();
         }
     }
-
 
 
 }
