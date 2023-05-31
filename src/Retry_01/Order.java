@@ -21,29 +21,27 @@ public class Order {
     }
 
     public void addOrder( int first, int second ) {
-        String name = "";
+        Product product = new Product();
         switch ( first ) {
             case 1: {
-                orderList.add( productDB.burgerArr[second - 1] );
-                name = productDB.burgerArr[second - 1].name;
+                product = productDB.burgerArr[second - 1];
                 break;
             }
             case 2: {
-                orderList.add( productDB.frozenCustardArr[second - 1] );
-                name = productDB.frozenCustardArr[second - 1].name;
+                product = productDB.frozenCustardArr[second - 1];
                 break;
             }
             case 3: {
-                orderList.add( productDB.drinkArr[second - 1] );
-                name = productDB.drinkArr[second - 1].name;
+                product = productDB.drinkArr[second - 1];
                 break;
             }
             case 4: {
-                orderList.add( productDB.beerArr[second - 1] );
-                name = productDB.beerArr[second - 1].name;
+                product = productDB.beerArr[second - 1];
                 break;
             }
         }
+        orderList.add( product );
+        String name = product.name;
         System.out.println( name + " 가 장바구니에 추가되었습니다.\n" );
     }
 
@@ -100,19 +98,19 @@ public class Order {
         Product product = new Product();
         switch ( first ) {
             case 1: {
-                product = productDB.burgerArr[second-1];
+                product = productDB.burgerArr[second - 1];
                 break;
             }
             case 2: {
-                product = productDB.frozenCustardArr[second-1];
+                product = productDB.frozenCustardArr[second - 1];
                 break;
             }
             case 3: {
-                product = productDB.drinkArr[second-1];
+                product = productDB.drinkArr[second - 1];
                 break;
             }
             case 4: {
-                product = productDB.beerArr[second-1];
+                product = productDB.beerArr[second - 1];
                 break;
             }
         }
