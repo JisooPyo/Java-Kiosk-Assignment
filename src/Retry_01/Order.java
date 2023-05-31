@@ -97,35 +97,28 @@ public class Order {
     }
 
     public void checkorder( int first, int second ) {
-        String name = "";
-        double price = 0;
-        String desc = "";
+        Product product = new Product();
         switch ( first ) {
             case 1: {
-                name = productDB.burgerArr[second - 1].name;
-                price = productDB.burgerArr[second - 1].price;
-                desc = productDB.burgerArr[second - 1].desc;
+                product = productDB.burgerArr[second-1];
                 break;
             }
             case 2: {
-                name = productDB.frozenCustardArr[second - 1].name;
-                price = productDB.frozenCustardArr[second - 1].price;
-                desc = productDB.frozenCustardArr[second - 1].desc;
+                product = productDB.frozenCustardArr[second-1];
                 break;
             }
             case 3: {
-                name = productDB.drinkArr[second - 1].name;
-                price = productDB.drinkArr[second - 1].price;
-                desc = productDB.drinkArr[second - 1].desc;
+                product = productDB.drinkArr[second-1];
                 break;
             }
             case 4: {
-                name = productDB.beerArr[second - 1].name;
-                price = productDB.beerArr[second - 1].price;
-                desc = productDB.beerArr[second - 1].desc;
+                product = productDB.beerArr[second-1];
                 break;
             }
         }
+        String name = product.name;
+        double price = product.price;
+        String desc = product.desc;
         System.out.println( name + "  | W " + price + " | " + desc );
         System.out.println( "위 메뉴를 장바구니에 추가하시겠습니까?" );
         System.out.println( "1. 확인        2. 취소" );
