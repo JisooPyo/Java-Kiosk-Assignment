@@ -1,7 +1,9 @@
 package Retry_01;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Order {
     ProductDB productDB = new ProductDB();
@@ -46,15 +48,35 @@ public class Order {
     }
 
     public void makeList( List< Product > productList ) {
-        for ( int i = 0 ; i < productList.size() ; i++ ) {
-            String name = productList.get( i ).name;
-            String desc = productList.get( i ).desc;
-            double price = productList.get( i ).price;
+        List< Product > distinct = productList.stream().distinct().collect( Collectors.toList() );
+        int[] count = countList( productList );
+
+        for ( int i = 0 ; i < distinct.size() ; i++ ) {
+            String name = distinct.get( i ).name;
+            String desc = distinct.get( i ).desc;
+            double price = distinct.get( i ).price;
+            int num = count[i];
 
             String space = " ".repeat( menuPartLength( productList ) - name.length() );
 
-            System.out.println( i + 1 + ". " + name + space + "| W " + price + " | " + desc );
+            System.out.println( name + space + "| W " + price + " | " + num + "개 | " + desc );
         }
+    }
+
+    public int[] countList( List< Product > productList ) {
+        List< Product > distinct = productList.stream().distinct().collect( Collectors.toList() );
+        int[] count = new int[distinct.size()];
+        Arrays.fill( count, 0 );
+
+        for ( int i = 0 ; i < distinct.size() ; i++ ) {
+            for ( int j = 0 ; j < productList.size() ; j++ ) {
+                if ( distinct.get( i ).equals( productList.get( j ) ) ) {
+                    count[i]++;
+                }
+            }
+        }
+
+        return count;
     }
 
     public int menuPartLength( List< Product > productList ) {

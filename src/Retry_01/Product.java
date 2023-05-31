@@ -3,6 +3,7 @@ public class Product extends Menu {
     String name;
     String desc;
     double price;
+    int count;
 
     Product() {
     }
