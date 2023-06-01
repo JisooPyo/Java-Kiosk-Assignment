@@ -32,7 +32,7 @@ public class Kiosk {
                 cancleScreen();
             }
         } else {
-            System.out.println("옵션을 잘못 선택하였습니다. 다시 골라주세요.");
+            System.out.println( "옵션을 잘못 선택하였습니다. 다시 골라주세요." );
             menuScreen();
         }
     }
@@ -40,10 +40,10 @@ public class Kiosk {
     public void productScreen( int first ) {
         product.showProduct( first );
         int second = sc.nextInt();
-        order.checkorder( first, second );
+        String[] arr = order.checkorder( first, second );
         int checknum = sc.nextInt();
         if ( checknum == 1 ) {
-            order.addOrder( first, second );
+            order.addOrder( arr );
             menuScreen();
         } else {
             productScreen( first );
