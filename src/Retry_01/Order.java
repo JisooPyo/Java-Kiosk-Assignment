@@ -1,13 +1,12 @@
 package Retry_01;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Order {
     ProductDB productDB = new ProductDB();
     static List< String[] > orderList = new ArrayList<>();
+
+    Map< String, String > totalProductList = new HashMap<>();
 
     public void showOrder() {
         System.out.println( "아래와 같이 주문 하시겠습니까?\n" );
@@ -134,4 +133,5 @@ public class Order {
         }
         return list2;
     }
+
 }

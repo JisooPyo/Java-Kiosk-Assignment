@@ -58,7 +58,9 @@ public class Kiosk {
         order.showOrder();
         int confirmOrder = sc.nextInt();
         if ( confirmOrder == 1 ) {
-
+            for ( String[] strArr : order.orderList ) {
+                order.totalProductList.put( strArr[0], strArr[1] );
+            }
             System.out.println( "주문이 완료되었습니다!\n" );
             System.out.println( "대기번호는 [ 1 ] 번 입니다." );
             System.out.println( "(3초 후 메뉴판으로 돌아갑니다.)\n" );
@@ -90,7 +92,20 @@ public class Kiosk {
 
     public void totalSalesScreen() {
         System.out.println( "[ 총 판매금액 현황 ]" );
-        System.out.println( "현재까지 총 판매된 금액은 [ W " + Math.round( totalSales * 10 ) / 10.0 + " ] 입니다." );
+        System.out.println( "현재까지 총 판매된 금액은 [ W " + Math.round( totalSales * 10 ) / 10.0 + " ] 입니다.\n" );
+        System.out.println( "[ 총 판매상품 목록 현황 ]" );
+        System.out.println( "현재까지 총 판매된 상품 목록은 아래와 같습니다." );
+        int keyLen = 0;
+        for ( String key : order.totalProductList.keySet() ) {
+            keyLen = Math.max( key.length(), keyLen );
+        }
+        keyLen += 2;
+        for ( String key : order.totalProductList.keySet() ) {
+            String value = order.totalProductList.get( key );
+            String space = " ".repeat( keyLen - key.length() );
+            System.out.println( "- " + key + space + "| W " + value );
+        }
+
         System.out.println( "\n1. 돌아가기" );
         int back = sc.nextInt();
         if ( back == 1 ) {
