@@ -7,6 +7,7 @@ public class Kiosk {
     Order order = new Order();
     Product product = new Product();
     Scanner sc = new Scanner( System.in );
+    double totalSales;
 
     Kiosk() {
         menuScreen();
@@ -14,39 +15,42 @@ public class Kiosk {
 
     public void menuScreen() {
         menu.showMenu();
-        int first = sc.nextInt();
-        if ( first <= 4 ) {
-            productScreen( first );
-        } else if ( first == 5 ) {
+        int menu = sc.nextInt();
+        if ( menu == 0 ) {
+            totalSalesScreen();
+        } else if ( menu == 5 ) {
             if ( order.orderList.size() == 0 ) {
-                System.out.println( "장바구니에 담은 상품이 없습니다. 다시 메뉴판으로 이동합니다.\n" );
+                System.out.println( "장바구니에 담은 상품이 없습니다. 다시 메뉴판으로 이동합니다." );
                 menuScreen();
             } else {
                 orderScreen();
             }
-        } else if ( first == 6 ) {
+        } else if ( menu == 6 ) {
             if ( order.orderList.size() == 0 ) {
                 System.out.println( "취소할 주문이 없습니다. 메뉴판으로 이동합니다.\n" );
                 menuScreen();
             } else {
                 cancleScreen();
             }
+        } else if ( menu <= 4 ) {
+            productScreen( menu );
         } else {
             System.out.println( "옵션을 잘못 선택하였습니다. 다시 골라주세요." );
             menuScreen();
         }
+
     }
 
-    public void productScreen( int first ) {
-        product.showProduct( first );
-        int second = sc.nextInt();
-        String[] arr = order.pickProduct( first, second );
+    public void productScreen( int menu ) {
+        product.showProduct( menu );
+        int detailMenu = sc.nextInt();
+        String[] arr = order.pickProduct( menu, detailMenu );
         int checknum = sc.nextInt();
         if ( checknum == 1 ) {
             order.addOrder( arr );
             menuScreen();
         } else {
-            productScreen( first );
+            productScreen( menu );
         }
     }
 
@@ -63,6 +67,7 @@ public class Kiosk {
             } catch ( InterruptedException e ) {
                 throw new RuntimeException( e );
             }
+            totalSales += order.getSum( order.orderList );
             order.orderList.clear();
             menuScreen();
         } else {
@@ -81,6 +86,20 @@ public class Kiosk {
         } else {
             menuScreen();
         }
+    }
+
+    public void totalSalesScreen() {
+        System.out.println( "[ 총 판매금액 현황 ]" );
+        System.out.println( "현재까지 총 판매된 금액은 [ W " + Math.round( totalSales * 10 ) / 10.0 + " ] 입니다." );
+        System.out.println( "\n1. 돌아가기" );
+        int back = sc.nextInt();
+        if ( back == 1 ) {
+            menuScreen();
+        } else {
+            System.out.println( "잘못된 값을 입력하였습니다.\n" );
+            totalSalesScreen();
+        }
+
     }
 
 

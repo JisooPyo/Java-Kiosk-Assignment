@@ -21,7 +21,7 @@ public class Order {
 
     public void addOrder( String[] arr ) {
         orderList.add( arr );
-        System.out.println( arr[0] + " 가 장바구니에 추가되었습니다.\n" );
+        System.out.println( "\n" + arr[0] + " 가 장바구니에 추가되었습니다.\n" );
     }
 
     public void makeList( List< String[] > list ) {
@@ -67,25 +67,25 @@ public class Order {
         return Math.round( sum * 10 ) / 10.0;
     }
 
-    public String[] pickProduct( int first, int second ) {
+    public String[] pickProduct( int menu, int detailMenu ) {
         Product product = new Product();
         Scanner sc = new Scanner( System.in );
         String[] arr = new String[4];
-        switch ( first ) {
+        switch ( menu ) {
             case 1: {
-                product = productDB.burgerArr[second - 1];
+                product = productDB.burgerArr[detailMenu - 1];
                 break;
             }
             case 2: {
-                product = productDB.frozenCustardArr[second - 1];
+                product = productDB.frozenCustardArr[detailMenu - 1];
                 break;
             }
             case 3: {
-                product = productDB.drinkArr[second - 1];
+                product = productDB.drinkArr[detailMenu - 1];
                 break;
             }
             case 4: {
-                product = productDB.beerArr[second - 1];
+                product = productDB.beerArr[detailMenu - 1];
                 break;
             }
         }

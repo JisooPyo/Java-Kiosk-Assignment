@@ -4,12 +4,15 @@ public class Menu {
     ProductDB productDB = new ProductDB();
     String name;
     String desc;
+
     Menu() {
     }
+
     Menu( String name, String desc ) {
         this.name = name;
         this.desc = desc;
     }
+
     public void showMenu() {
         System.out.println( "\"SHAKESHACK BURGER 에 오신걸 환영합니다.\"" );
         System.out.println( "아래 메뉴판을 보시고 메뉴를 골라 입력해주세요." );
@@ -23,7 +26,7 @@ public class Menu {
         System.out.println( "6. Cancel      | 진행중인 주문을 취소합니다." );
     }
 
-    public int menuPartLength(Menu[] menuArray){
+    public int menuPartLength( Menu[] menuArray ) {
         int menuPartLength = 0;
         for ( int i = 0 ; i < menuArray.length ; i++ ) {
             menuPartLength = Math.max( menuArray[i].name.length(), menuPartLength );
@@ -32,7 +35,7 @@ public class Menu {
         return menuPartLength;
     }
 
-    public void makeMenu(Menu[] menuArray){
+    public void makeMenu( Menu[] menuArray ) {
         for ( int i = 0 ; i < menuArray.length ; i++ ) {
             String name = menuArray[i].name;
             String desc = menuArray[i].desc;
