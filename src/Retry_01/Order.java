@@ -3,10 +3,12 @@ package Retry_01;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class Order {
     ProductDB productDB = new ProductDB();
     static List< String[] > orderList = new ArrayList<>();
+
     public void showOrder() {
         System.out.println( "아래와 같이 주문 하시겠습니까?\n" );
         System.out.println( "[ Orders ]" );
@@ -23,7 +25,7 @@ public class Order {
     }
 
     public void makeList( List< String[] > list ) {
-        List<String[]> list2=countList( list );
+        List< String[] > list2 = countList( list );
         for ( int i = 0 ; i < list2.size() ; i++ ) {
             String name = list2.get( i )[0];
             String price = list2.get( i )[1];
@@ -34,9 +36,8 @@ public class Order {
         }
     }
 
-    public List<String[]> countList(List<String[]> list){
+    public List< String[] > countList( List< String[] > list ) {
         List< String[] > list2 = deleteOverlap( list );
-
         for ( int i = 0 ; i < list2.size() ; i++ ) {
             int count = 0;
             for ( int j = 0 ; j < list.size() ; j++ ) {
@@ -66,8 +67,10 @@ public class Order {
         return Math.round( sum * 10 ) / 10.0;
     }
 
-    public String[] checkorder( int first, int second ) {
+    public String[] pickProduct( int first, int second ) {
         Product product = new Product();
+        Scanner sc = new Scanner( System.in );
+        String[] arr = new String[4];
         switch ( first ) {
             case 1: {
                 product = productDB.burgerArr[second - 1];
@@ -86,10 +89,27 @@ public class Order {
                 break;
             }
         }
-        String[] arr = { product.name, Double.toString( product.price ), product.desc, "1" };
+        if ( !( product.op1[0].equals( "oneSize" ) ) ) {
+            String op1 = product.op1[0];
+            String op1_price = product.op1[1];
+            String op2 = product.op2[0];
+            String op2_price = product.op2[1];
+
+            System.out.println( "위 메뉴의 어떤 옵션으로 추가하시겠습니까?" );
+            System.out.println( "1. " + op1 + "(W " + op1_price + ")        2. " + op2 + "(W " + op2_price + ")" );
+            int pickOp = sc.nextInt();
+            if ( pickOp == 1 ) {
+                arr = new String[] { product.name + "(" + op1 + ")", op1_price, product.desc, "1" };
+            } else {
+                arr = new String[] { product.name + "(" + op2 + ")", op2_price, product.desc, "1" };
+            }
+        } else {
+            arr = new String[] { product.name, product.op1[1], product.desc, "1" };
+        }
         System.out.println( arr[0] + "  | W " + arr[1] + " | " + arr[2] );
         System.out.println( "위 메뉴를 장바구니에 추가하시겠습니까?" );
         System.out.println( "1. 확인        2. 취소" );
+
         return arr;
     }
 

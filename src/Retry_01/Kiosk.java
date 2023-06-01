@@ -40,7 +40,7 @@ public class Kiosk {
     public void productScreen( int first ) {
         product.showProduct( first );
         int second = sc.nextInt();
-        String[] arr = order.checkorder( first, second );
+        String[] arr = order.pickProduct( first, second );
         int checknum = sc.nextInt();
         if ( checknum == 1 ) {
             order.addOrder( arr );

@@ -1,17 +1,25 @@
 package Retry_01;
+
 public class Product extends Menu {
     String name;
     String desc;
-    double price;
-    int count;
+    String[] op1;
+    String[] op2;
 
     Product() {
     }
 
-    Product( String name, double price, String desc ) {
+    Product( String name, String desc, String[] op1, String[] op2 ) {
         this.name = name;
         this.desc = desc;
-        this.price = price;
+        this.op1 = op1;
+        this.op2 = op2;
+    }
+
+    Product( String name, String desc, String[] op1 ) {
+        this.name = name;
+        this.desc = desc;
+        this.op1 = op1;
     }
 
     public void showProduct( int first ) {
@@ -56,7 +64,7 @@ public class Product extends Menu {
         for ( int i = 0 ; i < productArr.length ; i++ ) {
             String name = productArr[i].name;
             String desc = productArr[i].desc;
-            double price = productArr[i].price;
+            String price = productArr[i].op1[1];
             String space = " ".repeat( menuPartLength( productArr ) - name.length() );
 
             System.out.println( i + 1 + ". " + name + space + "| W " + price + " | " + desc );
