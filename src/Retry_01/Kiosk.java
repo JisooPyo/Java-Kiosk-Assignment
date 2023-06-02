@@ -8,6 +8,7 @@ public class Kiosk {
     Product product = new Product();
     Scanner sc = new Scanner( System.in );
     double totalSales;
+    int waitingNum = 1;
 
     Kiosk() {
         menuScreen();
@@ -17,20 +18,25 @@ public class Kiosk {
         menu.showMenu();
         int menu = sc.nextInt();
         switch ( menu ) {
-            case 0: totalSalesScreen(); break;
-            case 1: case 2: case 3: case 4:
+            case 0:
+                totalSalesScreen();
+                break;
+            case 1:
+            case 2:
+            case 3:
+            case 4:
                 productScreen( menu );
                 break;
             case 5: {
                 if ( order.orderList.size() == 0 ) {
-                    System.out.println( "장바구니에 담은 상품이 없습니다. 다시 메뉴판으로 이동합니다." );
+                    System.out.println( "장바구니에 담은 상품이 없습니다. 다시 메뉴판으로 이동합니다.\n" );
                     menuScreen();
                 } else {
                     orderScreen();
                 }
                 break;
             }
-            case 6:{
+            case 6: {
                 if ( order.orderList.size() == 0 ) {
                     System.out.println( "취소할 주문이 없습니다. 메뉴판으로 이동합니다.\n" );
                     menuScreen();
@@ -39,7 +45,7 @@ public class Kiosk {
                 }
                 break;
             }
-            default:{
+            default: {
                 System.out.println( "옵션을 잘못 선택하였습니다. 다시 골라주세요.\n" );
                 menuScreen();
             }
@@ -68,7 +74,8 @@ public class Kiosk {
                 order.totalProductList.put( strArr[0], strArr[1] );
             }
             System.out.println( "주문이 완료되었습니다!\n" );
-            System.out.println( "대기번호는 [ 1 ] 번 입니다." );
+            System.out.println( "대기번호는 [ " + waitingNum + " ] 번 입니다." );
+            waitingNum++;
             System.out.println( "(3초 후 메뉴판으로 돌아갑니다.)\n" );
             try {
                 Thread.sleep( 3000 );
