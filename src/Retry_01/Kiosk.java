@@ -41,7 +41,7 @@ public class Kiosk {
                     System.out.println( "취소할 주문이 없습니다. 메뉴판으로 이동합니다.\n" );
                     menuScreen();
                 } else {
-                    cancleScreen();
+                    cancelScreen();
                 }
                 break;
             }
@@ -96,7 +96,7 @@ public class Kiosk {
         }
     }
 
-    public void cancleScreen() {
+    public void cancelScreen() {
         System.out.println( "진행하던 주문을 취소하시겠습니까?" );
         System.out.println( "1. 확인        2. 취소" );
         int cancelpick = sc.nextInt();
