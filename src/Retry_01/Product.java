@@ -39,7 +39,7 @@ public class Product extends Menu {
         makeList( productArr );
     }
 
-    public int menuPartLength( Product[] productArr ) {
+    private int menuPartLength( Product[] productArr ) {
         int menuPartLength = 0;
         for ( int i = 0 ; i < productArr.length ; i++ ) {
             menuPartLength = Math.max( productArr[i].name.length(), menuPartLength );
@@ -48,7 +48,7 @@ public class Product extends Menu {
         return menuPartLength;
     }
 
-    public void makeList( Product[] productArr ) {
+    private void makeList( Product[] productArr ) {
         for ( int i = 0 ; i < productArr.length ; i++ ) {
             String name = productArr[i].name;
             String desc = productArr[i].desc;
@@ -72,7 +72,7 @@ public class Product extends Menu {
             String op1_price = Double.toString( product.op1_price );
             String op2 = product.op2;
             String op2_price = Double.toString( product.op2_price );
-
+            System.out.println( product.name + "  | W " + op1_price + " | " + product.desc );
             System.out.println( "위 메뉴의 어떤 옵션으로 추가하시겠습니까?" );
             System.out.println( "1. " + op1 + "(W " + op1_price + ")        2. " + op2 + "(W " + op2_price + ")" );
 

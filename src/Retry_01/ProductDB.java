@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProductDB {
-    public Product[] burgerArr() {
+    private Product[] burgerArr() {
         Product burger1 = new Product( "ShackBurger", "토마토, 양상추, 쉑소스가 토핑된 치즈버거", "Single", 6.9, "Double", 10.9 );
         Product burger2 = new Product( "SmokeShack", "베이컨, 체리 페퍼에 쉑소스가 토핑된 치즈버거", "Single", 8.9, "Double", 12.9 );
         Product burger3 = new Product( "Shroom Burger", "몬스터 치즈와 체다 치즈로 속을 채운 베지테리안 버거", "oneSize", 9.4 );
@@ -13,7 +13,7 @@ public class ProductDB {
         Product[] burgerArr = { burger1, burger2, burger3, burger4, burger5 };
         return burgerArr;
     }
-    public Product[] frozenCustardArr() {
+    private Product[] frozenCustardArr() {
         Product frozenCustard1 = new Product( "Shakes", "바닐라, 초콜렛, 솔티드 카라멜, 블랙 & 화이트, 스트로베리, 피넛버터, 커피", "oneSize", 5.9 );
         Product frozenCustard2 = new Product( "Shake of the Week", "특별한 커스터드 플레이버", "oneSize", 6.5 );
         Product frozenCustard3 = new Product( "Red Bean Shake", "신선한 커스터드와 함께 우유와 레드빈이 블렌딩 된 시즈널 쉐이크", "oneSize", 6.5 );
@@ -22,7 +22,7 @@ public class ProductDB {
         Product[] frozenCustardArr = { frozenCustard1, frozenCustard2, frozenCustard3, frozenCustard4, frozenCustard5 };
         return frozenCustardArr;
     }
-    public Product[] drinkArr() {
+    private Product[] drinkArr() {
         Product drink1 = new Product( "Shack-made Lemonade", "매장에서 직접 만드는 상큼한 레몬에이드", "Regular", 3.9, "Large", 4.5 );
         Product drink2 = new Product( "Fresh Brewed Iced Tea", "직접 유기농 홍차를 우려낸 아이스티", "Regular", 3.4, "Large", 3.9 );
         Product drink3 = new Product( "Fifty / Fifty", "레몬에이드와 아이스티의 만남", "Regular", 3.5, "Large", 4.4 );
@@ -31,7 +31,7 @@ public class ProductDB {
         Product[] drinkArr = { drink1, drink2, drink3, drink4, drink5 };
         return drinkArr;
     }
-    public Product[] beerArr() {
+    private Product[] beerArr() {
         Product beer1 = new Product( "ShackMeister Ale", "쉐이크쉑 버거를 위해 뉴욕 브루클린 브루어리에서 특별히 양조한 에일 맥주", "oneSize", 9.8 );
         Product beer2 = new Product( "Magpie Brewing Co.", "Pale Ale, Draft", "oneSize", 6.8 );
         Product[] beerArr = { beer1, beer2 };

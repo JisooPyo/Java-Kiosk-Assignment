@@ -27,7 +27,7 @@ public class Menu {
         System.out.println( "6. Cancel         | 진행중인 주문을 취소합니다." );
         System.out.println( "7. Off the KIOSK  | 키오스크를 종료합니다. ");
     }
-    public int menuPartLength( Menu[] menuArray ) {
+    private int menuPartLength( Menu[] menuArray ) {
         int menuPartLength = 0;
         for ( int i = 0 ; i < menuArray.length ; i++ ) {
             menuPartLength = Math.max( menuArray[i].name.length(), menuPartLength );
@@ -35,7 +35,7 @@ public class Menu {
         menuPartLength += 2;
         return menuPartLength;
     }
-    public void makeList( Menu[] menuArray ) {
+    private void makeList( Menu[] menuArray ) {
         for ( int i = 0 ; i < menuArray.length ; i++ ) {
             String name = menuArray[i].name;
             String desc = menuArray[i].desc;

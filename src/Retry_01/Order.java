@@ -26,11 +26,11 @@ public class Order {
 
     public void addOrder( String[] arr ) {
         orderList.add( arr );
-        System.out.println( "\n" + arr[0] + " 가 장바구니에 추가되었습니다.\n" );
+        System.out.println( arr[0] + " 가 장바구니에 추가되었습니다.\n" );
     }
 
 
-    public void makeList( List< String[] > list ) {
+    private void makeList( List< String[] > list ) {
         List< String[] > list2 = countList( list );
         for ( int i = 0 ; i < list2.size() ; i++ ) {
             String name = list2.get( i )[0];
@@ -41,7 +41,7 @@ public class Order {
             System.out.println( name + space + "| W " + price + " | " + num + "개 | " + desc );
         }
     }
-    public int menuPartLength( List< String[] > list ) {
+    private int menuPartLength( List< String[] > list ) {
         int menuPartLength = 0;
         for ( int i = 0 ; i < list.size() ; i++ ) {
             menuPartLength = Math.max( list.get( i )[0].length(), menuPartLength );
@@ -49,7 +49,7 @@ public class Order {
         menuPartLength += 2;
         return menuPartLength;
     }
-    public List< String[] > countList( List< String[] > list ) {
+    private List< String[] > countList( List< String[] > list ) {
         List< String[] > list2 = deleteOverlap( list );
         for ( int i = 0 ; i < list2.size() ; i++ ) {
             int count = 0;
@@ -62,7 +62,7 @@ public class Order {
         }
         return list2;
     }
-    public List< String[] > deleteOverlap( List< String[] > list ) {
+    private List< String[] > deleteOverlap( List< String[] > list ) {
         List< String[] > list2 = new ArrayList<>();
         for ( int i = 0 ; i < list.size() ; i++ ) {
             String[] strArr = list.get( i );
@@ -72,7 +72,7 @@ public class Order {
         }
         return list2;
     }
-    public boolean containStrArr( List< String[] > list, String[] strArr ) {
+    private boolean containStrArr( List< String[] > list, String[] strArr ) {
         boolean containStrArr = false;
         for ( int i = 0 ; i < list.size() ; i++ ) {
             if ( Arrays.equals( list.get( i ), strArr ) ) {
