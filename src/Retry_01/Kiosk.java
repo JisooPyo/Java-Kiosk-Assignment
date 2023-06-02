@@ -16,27 +16,33 @@ public class Kiosk {
     public void menuScreen() {
         menu.showMenu();
         int menu = sc.nextInt();
-        if ( menu == 0 ) {
-            totalSalesScreen();
-        } else if ( menu == 5 ) {
-            if ( order.orderList.size() == 0 ) {
-                System.out.println( "장바구니에 담은 상품이 없습니다. 다시 메뉴판으로 이동합니다." );
-                menuScreen();
-            } else {
-                orderScreen();
+        switch ( menu ) {
+            case 0: totalSalesScreen(); break;
+            case 1: case 2: case 3: case 4:
+                productScreen( menu );
+                break;
+            case 5: {
+                if ( order.orderList.size() == 0 ) {
+                    System.out.println( "장바구니에 담은 상품이 없습니다. 다시 메뉴판으로 이동합니다." );
+                    menuScreen();
+                } else {
+                    orderScreen();
+                }
+                break;
             }
-        } else if ( menu == 6 ) {
-            if ( order.orderList.size() == 0 ) {
-                System.out.println( "취소할 주문이 없습니다. 메뉴판으로 이동합니다.\n" );
-                menuScreen();
-            } else {
-                cancleScreen();
+            case 6:{
+                if ( order.orderList.size() == 0 ) {
+                    System.out.println( "취소할 주문이 없습니다. 메뉴판으로 이동합니다.\n" );
+                    menuScreen();
+                } else {
+                    cancleScreen();
+                }
+                break;
             }
-        } else if ( menu <= 4 ) {
-            productScreen( menu );
-        } else {
-            System.out.println( "옵션을 잘못 선택하였습니다. 다시 골라주세요." );
-            menuScreen();
+            default:{
+                System.out.println( "옵션을 잘못 선택하였습니다. 다시 골라주세요.\n" );
+                menuScreen();
+            }
         }
 
     }

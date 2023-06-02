@@ -1,5 +1,7 @@
 package Retry_01;
 
+import java.util.Map;
+
 public class Menu {
     ProductDB productDB = new ProductDB();
     String name;
@@ -14,12 +16,13 @@ public class Menu {
     }
 
     public void showMenu() {
+        Menu[] menuArr = productDB.menuArr();
         System.out.println( "\"SHAKESHACK BURGER 에 오신걸 환영합니다.\"" );
         System.out.println( "아래 메뉴판을 보시고 메뉴를 골라 입력해주세요." );
         System.out.println();
         System.out.println( "[ SHAKESHACK MENU ]" );
 
-        makeMenu( productDB.menuArray );
+        makeMenu( menuArr );
 
         System.out.println( "\n[ ORDER MENU ]" );
         System.out.println( "5. Order       | 장바구니를 확인 후 주문합니다." );
