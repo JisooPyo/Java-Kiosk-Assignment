@@ -37,6 +37,8 @@ public class ProductDB {
         Product[] beerArr = { beer1, beer2 };
         return beerArr;
     }
+
+
     public Menu[] menuArr() {
         Menu menu1 = new Menu( "Burgers", "앵거스 비프 통살을 다져만든 버거" );
         Menu menu2 = new Menu( "Frozen Custard", "매장에서 신선하게 만드는 아이스크림" );
@@ -45,6 +47,8 @@ public class ProductDB {
         Menu[] menuArr = { menu1, menu2, menu3, menu4 };
         return menuArr;
     }
+
+
     public Map< String, Product[] > menuMap() {
         Menu[] menuArr = menuArr();
         Map< String, Product[] > menuMap = new HashMap<>();

@@ -53,10 +53,11 @@ public class Kiosk {
 
     }
 
+
     public void productScreen( int menu ) {
         product.showProduct( menu );
         int detailMenu = sc.nextInt();
-        String[] arr = order.pickProduct( menu, detailMenu );
+        String[] arr = product.pickProduct( menu, detailMenu );
         int checknum = sc.nextInt();
         if ( checknum == 1 ) {
             order.addOrder( arr );
@@ -65,7 +66,6 @@ public class Kiosk {
             productScreen( menu );
         }
     }
-
     public void orderScreen() {
         order.showOrder();
         int confirmOrder = sc.nextInt();
@@ -89,7 +89,6 @@ public class Kiosk {
             menuScreen();
         }
     }
-
     public void cancleScreen() {
         System.out.println( "진행하던 주문을 취소하시겠습니까?" );
         System.out.println( "1. 확인        2. 취소" );
@@ -102,7 +101,6 @@ public class Kiosk {
             menuScreen();
         }
     }
-
     public void totalSalesScreen() {
         System.out.println( "[ 총 판매금액 현황 ]" );
         System.out.println( "현재까지 총 판매된 금액은 [ W " + Math.round( totalSales * 10 ) / 10.0 + " ] 입니다.\n" );

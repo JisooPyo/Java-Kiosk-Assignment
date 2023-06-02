@@ -1,7 +1,5 @@
 package Retry_01;
 
-import java.util.Map;
-
 public class Menu {
     ProductDB productDB = new ProductDB();
     String name;
@@ -22,13 +20,12 @@ public class Menu {
         System.out.println();
         System.out.println( "[ SHAKESHACK MENU ]" );
 
-        makeMenu( menuArr );
+        makeList( menuArr );
 
         System.out.println( "\n[ ORDER MENU ]" );
         System.out.println( "5. Order       | 장바구니를 확인 후 주문합니다." );
         System.out.println( "6. Cancel      | 진행중인 주문을 취소합니다." );
     }
-
     public int menuPartLength( Menu[] menuArray ) {
         int menuPartLength = 0;
         for ( int i = 0 ; i < menuArray.length ; i++ ) {
@@ -37,8 +34,7 @@ public class Menu {
         menuPartLength += 2;
         return menuPartLength;
     }
-
-    public void makeMenu( Menu[] menuArray ) {
+    public void makeList( Menu[] menuArray ) {
         for ( int i = 0 ; i < menuArray.length ; i++ ) {
             String name = menuArray[i].name;
             String desc = menuArray[i].desc;
