@@ -3,7 +3,6 @@ package Retry_01;
 import java.util.*;
 
 public class Order {
-    ProductDB productDB = new ProductDB();
     List< String[] > orderList = new ArrayList<>();
     Map< String, String > totalProductList = new HashMap<>();
 
