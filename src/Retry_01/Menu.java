@@ -23,8 +23,9 @@ public class Menu {
         makeList( menuArr );
 
         System.out.println( "\n[ ORDER MENU ]" );
-        System.out.println( "5. Order       | 장바구니를 확인 후 주문합니다." );
-        System.out.println( "6. Cancel      | 진행중인 주문을 취소합니다." );
+        System.out.println( "5. Order          | 장바구니를 확인 후 주문합니다." );
+        System.out.println( "6. Cancel         | 진행중인 주문을 취소합니다." );
+        System.out.println( "7. Off the KIOSK  | 키오스크를 종료합니다. ");
     }
     public int menuPartLength( Menu[] menuArray ) {
         int menuPartLength = 0;

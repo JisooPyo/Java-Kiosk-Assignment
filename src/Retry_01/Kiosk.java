@@ -10,7 +10,7 @@ public class Kiosk {
     double totalSales;
     int waitingNum = 1;
 
-    Kiosk() {
+    public void onKiosk() {
         menuScreen();
     }
 
@@ -45,9 +45,14 @@ public class Kiosk {
                 }
                 break;
             }
+            case 7: {
+                offKiosk();
+                break;
+            }
             default: {
                 System.out.println( "옵션을 잘못 선택하였습니다. 다시 골라주세요.\n" );
                 menuScreen();
+                break;
             }
         }
 
@@ -66,6 +71,7 @@ public class Kiosk {
             productScreen( menu );
         }
     }
+
     public void orderScreen() {
         order.showOrder();
         int confirmOrder = sc.nextInt();
@@ -89,6 +95,7 @@ public class Kiosk {
             menuScreen();
         }
     }
+
     public void cancleScreen() {
         System.out.println( "진행하던 주문을 취소하시겠습니까?" );
         System.out.println( "1. 확인        2. 취소" );
@@ -101,6 +108,7 @@ public class Kiosk {
             menuScreen();
         }
     }
+
     public void totalSalesScreen() {
         System.out.println( "[ 총 판매금액 현황 ]" );
         System.out.println( "현재까지 총 판매된 금액은 [ W " + Math.round( totalSales * 10 ) / 10.0 + " ] 입니다.\n" );
@@ -128,5 +136,17 @@ public class Kiosk {
 
     }
 
-
+    public void offKiosk() {
+        System.out.println( "키오스크를 종료하시겠습니까?" );
+        System.out.println( "1. 네        2. 아니오" );
+        int offNum = sc.nextInt();
+        if ( offNum == 1 ) {
+            System.out.println( "키오스크를 종료합니다.\n" );
+        } else if ( offNum == 2 ) {
+            menuScreen();
+        } else {
+            System.out.println( "잘못된 값을 입력하였습니다.\n" );
+            offKiosk();
+        }
+    }
 }
