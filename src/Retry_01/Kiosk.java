@@ -10,15 +10,17 @@ public class Kiosk {
     Order order = new Order();
     Product product = new Product();
     ProductDB productDB = new ProductDB();
-    Map< String, String > totalOrderList = new HashMap<>();
+    Map< String, String > totalOrderList = new HashMap<>(); // 총 판매 상품 리스트
     Scanner sc = new Scanner( System.in );
-    double totalSales;
-    int waitingNum = 1;
+    double totalSales; // 총 판매금액
+    int waitingNum = 1; // 대기번호
 
+    // 키오스크를 켜면 menuScreen()으로 가게 된다.
     public void onKiosk() {
         menuScreen();
     }
 
+    // 메뉴 화면
     public void menuScreen() {
         menu.showMenu();
         int menu = sc.nextInt();
@@ -67,6 +69,7 @@ public class Kiosk {
 
     }
 
+    // 상품 화면
     public void productScreen( int menu ) {
         // 상품을 보여준다.
         product.showProduct( menu );
@@ -103,6 +106,7 @@ public class Kiosk {
         }
     }
 
+    // 주문 화면(장바구니)
     public void orderScreen() {
         order.showOrder();
 
@@ -145,6 +149,7 @@ public class Kiosk {
         }
     }
 
+    // 주문취소 화면
     public void cancelScreen() {
         System.out.println( "진행하던 주문을 취소하시겠습니까?" );
         System.out.println( "1. 확인        2. 취소" );
@@ -169,6 +174,7 @@ public class Kiosk {
         }
     }
 
+    // 총 판매가격과 총 판매 물품들을 보여주는 화면
     public void totalSalesScreen() {
         System.out.println( "[ 총 판매금액 현황 ]" );
         System.out.println( "현재까지 총 판매된 금액은 [ W " + Math.round( totalSales * 10 ) / 10.0 + " ] 입니다.\n" );
@@ -205,6 +211,7 @@ public class Kiosk {
 
     }
 
+    // 키오스크를 끄는 메서드.
     public void offKiosk() {
         System.out.println( "키오스크를 종료하시겠습니까?" );
         System.out.println( "1. 네        2. 아니오" );

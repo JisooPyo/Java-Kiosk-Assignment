@@ -77,7 +77,7 @@ public class Product extends Menu {
         String desc = product.desc;
         double price;
 
-        // 상품의 op1이 oneSize가 아니라면(옵션이 한 개만 있는 상품은 op1을 oneSize로 설정함.
+        // 상품의 op1이 oneSize가 아니라면(옵션이 한 개만 있는 상품은 op1을 oneSize로 설정하였음.)
         if ( !( product.op1.equals( "oneSize" ) ) ) {
 
             System.out.println( name + "  | W " + product.op1_price + " | " + product.desc );

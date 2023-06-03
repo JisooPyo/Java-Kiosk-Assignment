@@ -40,9 +40,9 @@ public class Order {
             }
         }
 
-        // 만약 같은 물건이 담겨 있다면 장바구니에 Product를 추가해주고,
+        // 만약 같은 물건이 담겨 있지 않다면 장바구니에 Product를 추가해주고,
         // countMap(K:상품, V:갯수인 Map)에 Product의 이름과 1(1개)을 추가해준다.
-        // 같은 물건이 담겨 있지 않다면 countMap에 Product의 이름과 1을 추가해주는 메서드 addCount()를 호출한다.
+        // 같은 물건이 담겨 있다면 countMap에 Product의 이름과 1을 추가해주는 메서드 addCount()를 호출한다.
         if ( count == 0 ) {
             orderList.add( element );
             countMap.put( element.name, 1 );
