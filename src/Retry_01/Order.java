@@ -3,9 +3,10 @@ package Retry_01;
 import java.util.*;
 
 public class Order {
-    List< String[] > orderList = new ArrayList<>();
-    Map< String, String > totalProductList = new HashMap<>();
+    List< Product > orderList = new ArrayList<>();
+    Map< String, Integer > countMap = new HashMap<>();
 
+    // 장바구니를 보여준다.
     public void showOrder() {
         System.out.println( "아래와 같이 주문 하시겠습니까?\n" );
         System.out.println( "[ Orders ]" );
@@ -14,73 +15,61 @@ public class Order {
         System.out.println( "[ Total ]" );
         System.out.println( "W " + getSum( orderList ) + "\n" );
         System.out.println( "1. 주문        2. 메뉴판" );
+        System.out.println( "---------------------------------------------" );
     }
-    public double getSum( List< String[] > list ) {
+
+    // Product가 담긴 List를 입력하면 Product의 가격의 합을 출력해준다.
+    public double getSum( List< Product > list ) {
         double sum = 0;
-        for ( String[] strArr : list ) {
-            sum += Double.parseDouble( strArr[1] );
+        for ( Product product : list ) {
+            double price = product.op1_price;
+            int count = countMap.get( product.name ).intValue();
+            sum += price * count;
         }
         return Math.round( sum * 10 ) / 10.0;
     }
 
+    // 장바구니에 Product를 담아주는 메서드
+    public void addOrder( Product element ) {
 
-    public void addOrder( String[] arr ) {
-        orderList.add( arr );
-        System.out.println( arr[0] + " 가 장바구니에 추가되었습니다.\n" );
-    }
-
-
-    private void makeList( List< String[] > list ) {
-        List< String[] > list2 = countList( list );
-        for ( int i = 0 ; i < list2.size() ; i++ ) {
-            String name = list2.get( i )[0];
-            String price = list2.get( i )[1];
-            String desc = list2.get( i )[2];
-            String num = list2.get( i )[3];
-            String space = " ".repeat( menuPartLength( list2 ) - name.length() );
-            System.out.println( name + space + "| W " + price + " | " + num + "개 | " + desc );
-        }
-    }
-    private int menuPartLength( List< String[] > list ) {
-        int menuPartLength = 0;
-        for ( int i = 0 ; i < list.size() ; i++ ) {
-            menuPartLength = Math.max( list.get( i )[0].length(), menuPartLength );
-        }
-        menuPartLength += 2;
-        return menuPartLength;
-    }
-    private List< String[] > countList( List< String[] > list ) {
-        List< String[] > list2 = deleteOverlap( list );
-        for ( int i = 0 ; i < list2.size() ; i++ ) {
-            int count = 0;
-            for ( int j = 0 ; j < list.size() ; j++ ) {
-                if ( Arrays.equals( list2.get( i ), list.get( j ) ) ) {
-                    count++;
-                }
-            }
-            list2.get( i )[3] = Integer.toString( count );
-        }
-        return list2;
-    }
-    private List< String[] > deleteOverlap( List< String[] > list ) {
-        List< String[] > list2 = new ArrayList<>();
-        for ( int i = 0 ; i < list.size() ; i++ ) {
-            String[] strArr = list.get( i );
-            if ( !containStrArr( list2, strArr ) ) {
-                list2.add( strArr );
+        // 장바구니에 이미 같은 물건이 담겨 있는지 확인한다.
+        int count = 0;
+        for ( int i = 0 ; i < orderList.size() ; i++ ) {
+            if ( orderList.get( i ).name.equals( element.name ) ) {
+                count++;
             }
         }
-        return list2;
-    }
-    private boolean containStrArr( List< String[] > list, String[] strArr ) {
-        boolean containStrArr = false;
-        for ( int i = 0 ; i < list.size() ; i++ ) {
-            if ( Arrays.equals( list.get( i ), strArr ) ) {
-                containStrArr = true;
-                break;
-            }
+
+        // 만약 같은 물건이 담겨 있다면 장바구니에 Product를 추가해주고,
+        // countMap(K:상품, V:갯수인 Map)에 Product의 이름과 1(1개)을 추가해준다.
+        // 같은 물건이 담겨 있지 않다면 countMap에 Product의 이름과 1을 추가해주는 메서드 addCount()를 호출한다.
+        if ( count == 0 ) {
+            orderList.add( element );
+            countMap.put( element.name, 1 );
+        } else {
+            addCount( element );
         }
-        return containStrArr;
+
+        System.out.println( element.name + " 가 장바구니에 추가되었습니다." );
+        System.out.println( "---------------------------------------------" );
     }
 
+    // List< Product> 를 입력하면 sout해주는 메서드
+    private void makeList( List< Product > list ) {
+        for ( int i = 0 ; i < list.size() ; i++ ) {
+            String name = list.get( i ).name;
+            double price = list.get( i ).op1_price;
+            String desc = list.get( i ).desc;
+            Integer count = countMap.get( name );
+            String space = " ".repeat( Product.menuPartLength( list ) - name.length() );
+
+            System.out.println( ( i + 1 ) + ". " + name + space + "| W " + price + " | " + count + "개 | " + desc );
+        }
+    }
+
+    // 상품을 넣으면 countMap에서 상품에 맞는 value값(갯수)을 찾아 갯수를 더하기 1 해주는 메서드
+    private void addCount( Product product ) {
+        int add = countMap.get( product.name ).intValue() + 1;
+        countMap.put( product.name, add );
+    }
 }
